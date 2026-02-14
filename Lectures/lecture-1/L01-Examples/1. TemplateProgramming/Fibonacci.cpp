@@ -1,23 +1,20 @@
-#include <vector>
 #include <iostream>
 
-using namespace std;
-
-template<int n>
+template <int n>
 constexpr int fib() {
-    return fib<n-1>() + fib<n-2>();
+  return fib<n - 1>() + fib<n - 2>();
 }
 
-template<>
+template <>
 constexpr int fib<2>() {
-    return 1;
+  return 1;
 }
 
-template<>
+template <>
 constexpr int fib<1>() {
-    return 1;
+  return 1;
 }
 
 int main() {
-    std::cout << fib<3>() << "\n";
+  std::cout << fib<3>() << "\n";
 }

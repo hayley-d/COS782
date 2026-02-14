@@ -1,4 +1,4 @@
-const fn factorial(num: u64) -> u64 {
+/*const fn factorial(num: u64) -> u64 {
     let mut result = num;
     let mut iter = num - 1;
 
@@ -8,25 +8,13 @@ const fn factorial(num: u64) -> u64 {
     }
 
     result
-}
+}*/
 
-macro_rules! factorial_macro {
-    // Entry
-    ($num: expr) => {
-        factorial_macro($num, $num - 1)
-    };
-
-    ($num: expr, 0) => {
-        0
-    };
-
-    ($num: expr, 1) => {
-        $num
-    };
-
-    ($num: expr, $iter: expr) => {
-        fuctorial_macro($num * $iter, $iter - 1);
-    };
+const fn factorial(num: u64) -> u64 {
+    if num == 0 {
+        return 1;
+    }
+    return num * factorial(num - 1);
 }
 
 fn main() {
