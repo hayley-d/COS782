@@ -16,5 +16,6 @@ constexpr int fib<1>() {
 }
 
 int main() {
-  std::cout << fib<3>() << "\n";
+  constexpr int result = fib<3>();
+  std::cout << result << "\n";
 }

@@ -1,6 +1,8 @@
 #include <iostream>
 
 using namespace std;
+// You can have loops be evaluated at compile-time in cpp using constexpr which
+// is modern cpp when using old cpp this is how it was modeled.
 
 template <int From, int To>
 class loop;
@@ -14,90 +16,86 @@ class loopAsc;
 template <int From, int To, bool Stop>
 class loopDesc;
 
-
-
-
 template <int From, int To>
 class loop {
 private:
-	enum { go = (From <= To) };
-public:
-	static void l() {
-		loopChoice <From, To, go>::l();
-	};
-};
+  enum { go = (From <= To) };
 
+public:
+  static void l() {
+    loopChoice<From, To, go>::l();
+  };
+};
 
 template <int From, int To>
-class loopChoice <From, To, true> {
-	public: 
-	  static void l() {
-			cout << "Ascending" << endl;
-			loopAsc <From, To, true>::l();
-		}
+class loopChoice<From, To, true> {
+public:
+  static void l() {
+    cout << "Ascending" << endl;
+    loopAsc<From, To, true>::l();
+  }
 };
-
 
 template <int From, int To, bool Stop>
 class loopAsc {
-  private:
-	  enum { stop = (From < To) };
-  public: 
-	  static void l() {
-			cout << "Count " << From << " " << To << endl;
-			loopAsc <From + 1, To, stop>::l();
-		}
+private:
+  enum { stop = (From < To) };
+
+public:
+  static void l() {
+    cout << "Count " << From << " " << To << endl;
+    loopAsc<From + 1, To, stop>::l();
+  }
 };
 
 template <int From, int To>
 class loopAsc<From, To, false> {
-public: 
-	static void l() {
-		cout << "------" << endl;
-	}
+public:
+  static void l() {
+    cout << "------" << endl;
+  }
 };
 
-
 template <int From, int To>
-class loopChoice <From, To, false> {
-public: 
-	static void l() {
-		cout << "Descending" << endl;
-		loopDesc <From, To, true>::l();
-	}
+class loopChoice<From, To, false> {
+public:
+  static void l() {
+    cout << "Descending" << endl;
+    loopDesc<From, To, true>::l();
+  }
 };
 
 template <int From, int To, bool Stop>
 class loopDesc {
 private:
-	enum { stop = (From > To) };
-public: 
-	static void l() {
-		cout << "Count " << From << " " << To << endl;
-		loopDesc <From - 1, To, stop>::l();
-	}
+  enum { stop = (From > To) };
+
+public:
+  static void l() {
+    cout << "Count " << From << " " << To << endl;
+    loopDesc<From - 1, To, stop>::l();
+  }
 };
 
 template <int From, int To>
 class loopDesc<From, To, false> {
-public: 
-	static void l() {
-		cout << "------" << endl;
-	}
+public:
+  static void l() {
+    cout << "------" << endl;
+  }
 };
 
-int main(){
-	loop<5,3>::l();
-    loop<2,5>::l();
-	loop<2,2>::l();
-	loop<2,1>::l();
+int main() {
+  loop<5, 3>::l();
+  loop<2, 5>::l();
+  loop<2, 2>::l();
+  loop<2, 1>::l();
   return 0;
 }
 
-
 /*
    Output
- 
+
  Descending
  Count 5 3
  Count 4 3
@@ -116,5 +114,5 @@ int main(){
  Count 2 1
  Count 1 1
  ------
- 
+
  */

@@ -1,6 +1,8 @@
 #include <iostream>
 
 using namespace std;
+// Before c++ 17 compile-time if statements did not exist.
+//
 
 /* If as specified by Pisula */
 template <bool C, class ThenType, class ElseType>
@@ -8,69 +10,83 @@ struct If {
   typedef ThenType ret;
 };
 
+// Specialisation for false
 template <class ThenType, class ElseType>
-struct If <false,ThenType,ElseType>{
+struct If<false, ThenType, ElseType> {
   typedef ElseType ret;
 };
 
-//Using
 struct Type1 {
   static inline void f() {
-    cout<<"Pisula Statement 1"<<endl;
+    cout << "Pisula Statement 1" << endl;
   }
 };
 
 struct Type2 {
   static inline void f() {
-    cout<<"Pisula Statement 2"<<endl;
+    cout << "Pisula Statement 2" << endl;
   }
 };
 
-
-
 /* If according to Todd Veldhuizen */
 template <bool C>
-class choice{};
+class choice {};
 
 template <>
 class choice<true> {
-  public:
-		static inline void f() { cout<<"Veldhuizen Statement 1"<<endl; };
+public:
+  static inline void f() {
+    cout << "Veldhuizen Statement 1" << endl;
+  };
 };
 
 template <>
 class choice<false> {
-  public:
-    static inline void f() { cout<<"Veldhuizen Statement 2"<<endl; };
+public:
+  static inline void f() {
+    cout << "Veldhuizen Statement 2" << endl;
+  };
 };
 
+// Modern approach would be to use this
+template <bool Condition>
+void execute() {
+  if constexpr (Condition) {
+    cout << "Statement 1\n";
+  } else {
+    cout << "Statement 2\n";
+  }
+}
 
-int main(){
+int main() {
 
-  If< (100 > 20), Type1, Type2 >::ret::f();  // static
-  If< (100 < 20), Type1, Type2 >::ret::f();
-    
-    
-  choice< (100 > 20) >::f();
-  choice< (100 < 20) >::f();
- 
-	// OR 
-	choice< (100 > 20) >* c = new choice< (100 > 20) >;
-	c->f(); 
-	delete c;
- // if (void f() { cout<<"Veldhuizen Statement 1"<<endl; };) // not static
+  If<(100 > 20), Type1, Type2>::ret::f(); // static
+  If<(100 < 20), Type1, Type2>::ret::f();
 
+  choice<(100 > 20)>::f();
+  choice<(100 < 20)>::f();
 
+  // OR
+  choice<(100 > 20)> *c =
+      new choice<(100 > 20)>; // Compile-time or run-time depending on how the
+                              // question is asked it mapps to template<true>
+                              // but thats about it the rest is done at run-time
+  c->f();
+  delete c;
+  // if (void f() { cout<<"Veldhuizen Statement 1"<<endl; };) // not static
+
+  execute<(100 > 200)>();
+  execute<(100 < 200)>();
   return 0;
 }
 
 /*
    Output
- 
+
  Pisula Statement 1
  Pisula Statement 2
  Veldhuizen Statement 1
  Veldhuizen Statement 2
  Veldhuizen Statement 1
- 
+
  */
