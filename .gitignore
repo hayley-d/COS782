@@ -3,6 +3,8 @@ COS782StudyGuide2026_V1.pdf
 
 target/
 
-*.0
+*.o
 *.a
+
+.DS_Store
 
