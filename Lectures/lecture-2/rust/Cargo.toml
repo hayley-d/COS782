@@ -1,0 +1,2 @@
+[workspace]
+members = ["typelist-macros", "typelist"]

@@ -1,0 +1,86 @@
+warning: virtual workspace defaulting to `resolver = "1"` despite one or more workspace members being on edition 2024 which implies `resolver = "3"`
+  |
+  = note: to keep the current resolver, specify `workspace.resolver = "1"` in the workspace root's manifest
+  = note: to use the edition 2024 resolver, specify `workspace.resolver = "3"` in the workspace root's manifest
+  = note: for more details see https://doc.rust-lang.org/cargo/reference/resolver.html#resolver-versions
+   0.005228958s  INFO prepare_target{force=false package_id=typelist v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/typelist) target="typelist"}: cargo::core::compiler::fingerprint: fingerprint error for typelist v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/typelist)/Check { test: false }/TargetInner { name: "typelist", doc: true, ..: with_path("/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/typelist/src/main.rs", Edition2024) }
+   0.005239417s  INFO prepare_target{force=false package_id=typelist v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/typelist) target="typelist"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/target/debug/.fingerprint/typelist-cdbf003b8d9713de/bin-typelist`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: std::backtrace::Backtrace::create
+   1: std::backtrace::Backtrace::capture
+   2: <E as anyhow::context::ext::StdError>::ext_context
+   3: cargo_util::paths::read
+   4: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   5: cargo::core::compiler::fingerprint::prepare_target
+   6: cargo::core::compiler::compile
+   7: cargo::core::compiler::build_runner::BuildRunner::compile
+   8: cargo::ops::cargo_compile::compile_ws
+   9: cargo::ops::cargo_compile::compile_with_exec
+  10: cargo::ops::cargo_compile::compile
+  11: cargo::commands::check::exec
+  12: cargo::cli::Exec::exec
+  13: cargo::cli::main
+  14: cargo::main
+  15: std::sys::backtrace::__rust_begin_short_backtrace
+  16: std::rt::lang_start::{{closure}}
+  17: std::rt::lang_start_internal
+  18: _main
+   0.008006417s  INFO prepare_target{force=false package_id=typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/typelist-macros) target="typelist_macros"}: cargo::core::compiler::fingerprint: fingerprint error for typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/typelist-macros)/Build/TargetInner { name_inferred: true, for_host: true, proc_macro: true, ..: lib_target("typelist_macros", ["proc-macro"], "/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/typelist-macros/src/lib.rs", Edition2024) }
+   0.008014333s  INFO prepare_target{force=false package_id=typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/typelist-macros) target="typelist_macros"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/target/debug/.fingerprint/typelist-macros-c4ce04ac9ee599ff/lib-typelist_macros`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: std::backtrace::Backtrace::create
+   1: std::backtrace::Backtrace::capture
+   2: <E as anyhow::context::ext::StdError>::ext_context
+   3: cargo_util::paths::read
+   4: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   5: cargo::core::compiler::fingerprint::prepare_target
+   6: cargo::core::compiler::compile
+   7: cargo::core::compiler::compile
+   8: cargo::core::compiler::build_runner::BuildRunner::compile
+   9: cargo::ops::cargo_compile::compile_ws
+  10: cargo::ops::cargo_compile::compile_with_exec
+  11: cargo::ops::cargo_compile::compile
+  12: cargo::commands::check::exec
+  13: cargo::cli::Exec::exec
+  14: cargo::cli::main
+  15: cargo::main
+  16: std::sys::backtrace::__rust_begin_short_backtrace
+  17: std::rt::lang_start::{{closure}}
+  18: std::rt::lang_start_internal
+  19: _main
+   0.008617708s  INFO prepare_target{force=false package_id=typelist v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/typelist) target="typelist"}: cargo::core::compiler::fingerprint: fingerprint error for typelist v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/typelist)/Check { test: true }/TargetInner { name: "typelist", doc: true, ..: with_path("/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/typelist/src/main.rs", Edition2024) }
+   0.008622042s  INFO prepare_target{force=false package_id=typelist v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/typelist) target="typelist"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/target/debug/.fingerprint/typelist-17555564e2ee03b4/test-bin-typelist`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: std::backtrace::Backtrace::create
+   1: std::backtrace::Backtrace::capture
+   2: <E as anyhow::context::ext::StdError>::ext_context
+   3: cargo_util::paths::read
+   4: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   5: cargo::core::compiler::fingerprint::prepare_target
+   6: cargo::core::compiler::compile
+   7: cargo::core::compiler::build_runner::BuildRunner::compile
+   8: cargo::ops::cargo_compile::compile_ws
+   9: cargo::ops::cargo_compile::compile_with_exec
+  10: cargo::ops::cargo_compile::compile
+  11: cargo::commands::check::exec
+  12: cargo::cli::Exec::exec
+  13: cargo::cli::main
+  14: cargo::main
+  15: std::sys::backtrace::__rust_begin_short_backtrace
+  16: std::rt::lang_start::{{closure}}
+  17: std::rt::lang_start_internal
+  18: _main
+   Compiling typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/rust/typelist-macros)
+error: could not compile `typelist-macros` (lib) due to 3 previous errors

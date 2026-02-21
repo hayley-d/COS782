@@ -1,0 +1,90 @@
+   0.025786167s  INFO prepare_target{force=false package_id=typelist v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist) target="typelist"}: cargo::core::compiler::fingerprint: fingerprint error for typelist v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist)/Check { test: false }/TargetInner { name: "typelist", doc: true, ..: with_path("/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist/src/main.rs", Edition2024) }
+   0.025796500s  INFO prepare_target{force=false package_id=typelist v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist) target="typelist"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/hayley/Documents/university/COS782/Lectures/lecture-2/target/debug/.fingerprint/typelist-185127c3a255c303/bin-typelist`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: std::backtrace::Backtrace::create
+   1: std::backtrace::Backtrace::capture
+   2: <E as anyhow::context::ext::StdError>::ext_context
+   3: cargo_util::paths::read
+   4: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   5: cargo::core::compiler::fingerprint::prepare_target
+   6: cargo::core::compiler::compile
+   7: cargo::core::compiler::build_runner::BuildRunner::compile
+   8: cargo::ops::cargo_compile::compile_ws
+   9: cargo::ops::cargo_compile::compile_with_exec
+  10: cargo::ops::cargo_compile::compile
+  11: cargo::commands::check::exec
+  12: cargo::cli::Exec::exec
+  13: cargo::cli::main
+  14: cargo::main
+  15: std::sys::backtrace::__rust_begin_short_backtrace
+  16: std::rt::lang_start::{{closure}}
+  17: std::rt::lang_start_internal
+  18: _main
+   0.028144542s  INFO prepare_target{force=false package_id=typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros) target="typelist_macros"}: cargo::core::compiler::fingerprint: fingerprint error for typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros)/Build/TargetInner { name_inferred: true, for_host: true, proc_macro: true, ..: lib_target("typelist_macros", ["proc-macro"], "/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros/src/lib.rs", Edition2024) }
+   0.028152042s  INFO prepare_target{force=false package_id=typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros) target="typelist_macros"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/hayley/Documents/university/COS782/Lectures/lecture-2/target/debug/.fingerprint/typelist-macros-cf2e9c81aca5fafa/lib-typelist_macros`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: std::backtrace::Backtrace::create
+   1: std::backtrace::Backtrace::capture
+   2: <E as anyhow::context::ext::StdError>::ext_context
+   3: cargo_util::paths::read
+   4: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   5: cargo::core::compiler::fingerprint::prepare_target
+   6: cargo::core::compiler::compile
+   7: cargo::core::compiler::compile
+   8: cargo::core::compiler::build_runner::BuildRunner::compile
+   9: cargo::ops::cargo_compile::compile_ws
+  10: cargo::ops::cargo_compile::compile_with_exec
+  11: cargo::ops::cargo_compile::compile
+  12: cargo::commands::check::exec
+  13: cargo::cli::Exec::exec
+  14: cargo::cli::main
+  15: cargo::main
+  16: std::sys::backtrace::__rust_begin_short_backtrace
+  17: std::rt::lang_start::{{closure}}
+  18: std::rt::lang_start_internal
+  19: _main
+   0.028604500s  INFO prepare_target{force=false package_id=typelist v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist) target="typelist"}: cargo::core::compiler::fingerprint: fingerprint error for typelist v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist)/Check { test: true }/TargetInner { name: "typelist", doc: true, ..: with_path("/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist/src/main.rs", Edition2024) }
+   0.028608083s  INFO prepare_target{force=false package_id=typelist v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist) target="typelist"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/hayley/Documents/university/COS782/Lectures/lecture-2/target/debug/.fingerprint/typelist-106a60c6cb951be0/test-bin-typelist`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: std::backtrace::Backtrace::create
+   1: std::backtrace::Backtrace::capture
+   2: <E as anyhow::context::ext::StdError>::ext_context
+   3: cargo_util::paths::read
+   4: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   5: cargo::core::compiler::fingerprint::prepare_target
+   6: cargo::core::compiler::compile
+   7: cargo::core::compiler::build_runner::BuildRunner::compile
+   8: cargo::ops::cargo_compile::compile_ws
+   9: cargo::ops::cargo_compile::compile_with_exec
+  10: cargo::ops::cargo_compile::compile
+  11: cargo::commands::check::exec
+  12: cargo::cli::Exec::exec
+  13: cargo::cli::main
+  14: cargo::main
+  15: std::sys::backtrace::__rust_begin_short_backtrace
+  16: std::rt::lang_start::{{closure}}
+  17: std::rt::lang_start_internal
+  18: _main
+   0.028823958s  INFO prepare_target{force=false package_id=typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros) target="typelist_macros"}: cargo::core::compiler::fingerprint: dependency on `proc_macro2` is newer than we are 1771168331.705004022s > 1771168109.607507509s "/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros"
+   0.028862167s  INFO prepare_target{force=false package_id=typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros) target="typelist_macros"}: cargo::core::compiler::fingerprint: fingerprint dirty for typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros)/Check { test: false }/TargetInner { name_inferred: true, for_host: true, proc_macro: true, ..: lib_target("typelist_macros", ["proc-macro"], "/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros/src/lib.rs", Edition2024) }
+   0.028866250s  INFO prepare_target{force=false package_id=typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros) target="typelist_macros"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleDependency { name: "proc_macro2", dep_mtime: FileTime { seconds: 1771168331, nanos: 705004022 }, max_mtime: FileTime { seconds: 1771168109, nanos: 607507509 } })
+   0.029065583s  INFO prepare_target{force=false package_id=typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros) target="typelist_macros"}: cargo::core::compiler::fingerprint: dependency on `proc_macro2` is newer than we are 1771168331.705004022s > 1771168109.605377052s "/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros"
+   0.029095250s  INFO prepare_target{force=false package_id=typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros) target="typelist_macros"}: cargo::core::compiler::fingerprint: fingerprint dirty for typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros)/Check { test: true }/TargetInner { name_inferred: true, for_host: true, proc_macro: true, ..: lib_target("typelist_macros", ["proc-macro"], "/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros/src/lib.rs", Edition2024) }
+   0.029098750s  INFO prepare_target{force=false package_id=typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros) target="typelist_macros"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleDependency { name: "proc_macro2", dep_mtime: FileTime { seconds: 1771168331, nanos: 705004022 }, max_mtime: FileTime { seconds: 1771168109, nanos: 605377052 } })
+   Compiling typelist-macros v0.1.0 (/Users/hayley/Documents/university/COS782/Lectures/lecture-2/typelist-macros)
+error: could not compile `typelist-macros` (lib) due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `typelist-macros` (lib test) due to 2 previous errors
+error: could not compile `typelist-macros` (lib) due to 2 previous errors

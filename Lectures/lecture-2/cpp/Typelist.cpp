@@ -66,3 +66,53 @@ template <typename Head, typename Tail, unsigned int i>
 struct TypeAt<Typelist<Head, Tail>, i> {
   typedef typename TypeAt<Tail, i - 1>::Result Result;
 };
+
+// Index of Implementation
+template <typename Tlist, typename T>
+struct IndexOf;
+
+template <typename T>
+struct IndexOf<NullType, T> {
+  enum { value = -1 };
+};
+
+template <typename Head, typename Tail, typename T>
+struct IndexOf<Typelist<Head, Tail>, T> {
+private:
+  enum { temp = IndexOf<Tail, T>::value };
+
+public:
+  enum { value = temp == -1 ? -1 : 1 + temp };
+};
+
+// Append to a typelist
+// Since it is not possbile to modify an existing typelist this will return a
+// new typelist that contains the result
+template <typename Tlist, typename T>
+struct Append {};
+
+// If the Typelist is null & type T is null
+template <>
+struct Append<NullType, NullType> {
+  typedef NullType Result;
+};
+
+// If  The typelist is null and T is a single non-null type
+template <typename T>
+struct Append<NullType, T> {
+  typedef TYPELIST_1(T) Result;
+};
+
+// if the typelist is null and T is a typelist
+template <typename Head, typename Tail>
+struct Append<NullType, Typelist<Head, Tail>> {
+  typedef Typelist<Head, Tail> Result;
+};
+
+// else Typelist is non-null
+// The result of having TList head as the head and appending T to the
+// TList::Tail
+template <typename Head, typename Tail, typename T>
+struct Append<Typelist<Head, Tail>, T> {
+  typedef Typelist<Head, typename Append<Tail, T>::Result> Result;
+};

@@ -1,0 +1,7 @@
+[package]
+name = "typelist"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+typelist-macros = { path = "../typelist-macros" }
