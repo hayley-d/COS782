@@ -1,3 +1,0 @@
-[workspace]
-members = ["cpp/typelist-macros", "rust/typelist", "rust/typelist-macros","typelist", "typelist-macros"]
-resolver = "2"
