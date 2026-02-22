@@ -34,4 +34,3 @@ Result = Typelist<int, NoDuplicates<Typelist<long, NullType>>::Result>
 	   = Typelist<int, Typelist<long, NullType>> 
 	   = [int, long]
 
-
