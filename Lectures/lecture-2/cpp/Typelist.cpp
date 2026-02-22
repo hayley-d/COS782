@@ -181,4 +181,50 @@ public:
   typedef Typelist<Head, typename NoDuplicates<temp2>::Result> Result;
 };
 
-// [byte, int, int, long]
+template <typename Tlist, typename T, typename U>
+struct Replace {};
+
+template <typename T, typename U>
+struct Replace<NullType, T, U> {
+  typedef NullType Result;
+};
+
+template <typename Head, typename Tail, typename U>
+struct Replace<Typelist<Head, Tail>, Head, U> {
+  typedef Typelist<U, Tail> Result;
+};
+
+template <typename Head, typename Tail, typename T, typename U>
+struct Replace<Typelist<Head, Tail>, T, U> {
+private:
+  typedef typename Replace<Tail, T, U>::Result temp;
+
+public:
+  typedef Typelist<Head, temp> Result;
+};
+
+template <typename Tlist, typename T, typename U>
+struct ReplaceAll {};
+
+template <typename T, typename U>
+struct ReplaceAll<NullType, T, U> {
+  typedef NullType Result;
+};
+
+template <typename Head, typename Tail, typename U>
+struct ReplaceAll<Typelist<Head, Tail>, Head, U> {
+private:
+  typedef typename ReplaceAll<Tail, Head, U>::Result temp;
+
+public:
+  typedef Typelist<U, temp> Result;
+};
+
+template <typename Head, typename Tail, typename T, typename U>
+struct ReplaceAll<Typelist<Head, Tail>, T, U> {
+private:
+  typedef typename ReplaceAll<Tail, T, U>::Result temp;
+
+public:
+  typedef Typelist<Head, temp> Result;
+};
