@@ -124,6 +124,67 @@ template ReplaceAll(Tlist, T, U)
 	}
 }
 
+template Conversion(T, U)
+{
+	enum exists = isImplicitlyConvertible!(T, U);
+	enum exists2Way = exists && isImplicitlyConvertible!(U, T);
+	enum sameType = is(T == U);
+}
+
+template SuperSubclass(T, U)
+{
+	enum value = Conversion!(const U*, const T*).exists &&
+		!Conversion!(const T*, const void*).sameType;
+}
+
+template staticIf(bool cond, alias a, alias b)
+{
+	static if (cond)
+		alias staticIf = a;
+	else
+		alias staticIf = b;
+}
+
+template MostDerived(Tlist, T)
+{
+	static if (is(Tlist == NullType))
+		alias MostDerived = T;
+	else
+	{
+		alias candidate = MostDerived!(Tlist.tail, T);
+		alias MostDerived = staticIf!(SuperSubclass!(candidate, Tlist.head)
+				.value, Tlist.head, candidate);
+	}
+}
+
+template DerivedToFront(Tlist)
+{
+	static if (is(Tlist == NullType))
+		alias DerivedToFront = NullType;
+	else
+	{
+		alias MD = MostDerived!(Tlist.tail, Tlist.head);
+		alias Result = Replace!(Tlist.tail, MD, Tlist.head);
+		alias DerivedToFront = Typelist!(MD, Result);
+	}
+}
+
+class Animal
+{
+}
+
+class Dog : Animal
+{
+}
+
+class Cat : Animal
+{
+}
+
+class GoldenRetriever : Dog
+{
+}
+
 void main()
 {
 	alias allCharTypes = Typelist!(char, Typelist!(byte, Typelist!(ubyte, NullType)));
@@ -168,5 +229,25 @@ void main()
 
 	static assert(is(TypeAt!(replaceAll, 4) == float));
 	static assert(is(TypeAt!(replaceAll, 5) == float));
+
+	alias animalList = Typelist_3!(Animal, Dog, GoldenRetriever);
+
+	static assert(is(MostDerived!(animalList, Animal) == GoldenRetriever));
+
+	static assert(is(MostDerived!(Typelist_2!(Dog, GoldenRetriever), Dog) == GoldenRetriever));
+
+	static assert(is(MostDerived!(Typelist_1!Cat, Animal) == Animal));
+
+	writeln("MostDerived tests passed.");
+
+	alias mixed = Typelist_3!(Animal, GoldenRetriever, Dog);
+	alias sorted = DerivedToFront!mixed;
+	static assert(is(sorted.head == GoldenRetriever));
+
+	alias mixed2 = Typelist_2!(Animal, Dog);
+	alias sorted2 = DerivedToFront!mixed2;
+	static assert(is(sorted2.head == Dog));
+
+	writeln("DerivedToFront tests passed.");
 
 }
